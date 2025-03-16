@@ -1,2 +1,2 @@
 # MyLittlePetProjects
-Some intersting progamms I wrote in spare time
+Some intersting progamms I wrote in my spare time
