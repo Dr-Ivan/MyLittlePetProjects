@@ -398,3 +398,21 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+
+
+
+
+
+
+# Игнорировать все папки сборки
+**/build/**
+**/out/**
+**/bin/**
+**/.vscode/**
+
+
+# Другие правила для C++
+*.o
+*.a
+*.so
+*.dll
