@@ -28,7 +28,7 @@ add_definitions(${FLTK_DEFINITIONS})
 
 # add_executable(game15 ${GAME_SOURCES} ${GAME_HEADERS})
 
-add_executable(game15 main.cpp GameView.hpp GameView.cpp)
+add_executable(game15 main.cpp GameView.hpp GameView.cpp MatrixModel.hpp MatrixModel.cpp)
 
 target_link_libraries(game15 fltk fltk_images)
 
