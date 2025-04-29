@@ -2,8 +2,13 @@
 
 #include<iostream>
 
+#include <sstream>
 
-GameView::GameView(int w, int h, char const* title) : Fl_Window(w, h, title) {
+
+GameView::GameView(int w, int h, char const* title, MatrixModel& m) 
+    : Fl_Window(w, h, title),
+      model(m) 
+{
 
     m_restartButton = std::make_unique<Fl_Button>(22, 160, 100, 50, "New game");
     m_restartButton->callback([](Fl_Widget*, void* data) {
@@ -48,12 +53,18 @@ GameView::GameView(int w, int h, char const* title) : Fl_Window(w, h, title) {
 
 
 void GameView::update_window() {
-    
+    for (int i = 0; i < c_gridSize; ++i){
+        for (int j = 0; j < c_gridSize; ++j){
+            int num = model.getNum(i,j);
 
-    // end();
-
-    // this->redraw();
-
+            if (num != 0){
+                std::string label = std::to_string(num);
+                m_buttonGrid[i * c_gridSize + j]->copy_label(label.c_str());
+                m_buttonGrid[i * c_gridSize + j]->redraw();
+            } else
+                m_buttonGrid[i * c_gridSize + j]->label("  ");
+        }
+    }
 };
 
 void GameView::show_finish_window() {

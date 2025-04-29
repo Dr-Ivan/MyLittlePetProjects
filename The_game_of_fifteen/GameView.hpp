@@ -8,10 +8,12 @@
 #include <memory>
 #include <functional>
 
+#include "MatrixModel.hpp"
+
 
 class GameView : public Fl_Window {
 public:
-    GameView(int w, int h, char const* title);
+    GameView(int w, int h, char const* title, MatrixModel& m);
 
     void update_window();
 
@@ -32,11 +34,11 @@ public:
     ~GameView();
 
 private:
-    int m_currentButton = 0;
-    int c_gridSize = 4;
-    int c_buttonWidth = 30;
-    int c_buttonHeight = 30;
-
+    const int c_gridSize = 4;
+    const int c_buttonWidth = 30;
+    const int c_buttonHeight = 30;
+    
+    MatrixModel& model;
 
     std::vector<std::unique_ptr<Fl_Button>> m_buttonGrid;
     std::vector<std::pair<int, int>> m_buttonGridIndexes;
