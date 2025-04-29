@@ -1,6 +1,7 @@
 #include <FL/Fl.h>
 #include <iostream>
 #include "GameView.hpp"
+#include "MatrixModel.hpp"
 
 
 void printPair(std::pair<int, int> p){
@@ -12,9 +13,12 @@ void print(){
 };
 
 int main() {
-    GameView game {145, 220, "15"};
+    MatrixModel m{};
+
+    GameView game {145, 220, "15", m};
     game.setButtonGridCallback(printPair);
     game.setRestartCallback(print);
+    game.update_window();
     game.show();
 
     
