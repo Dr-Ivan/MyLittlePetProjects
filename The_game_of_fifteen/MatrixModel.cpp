@@ -16,7 +16,7 @@ void MatrixModel::shuffleMatrix(){
 
     do{
         std::shuffle(m_matrix.begin(), m_matrix.end(), g);
-    } while (!isSolvable());
+    } while (isSolvable());
 
 }
 
