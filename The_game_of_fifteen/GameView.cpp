@@ -5,9 +5,9 @@
 #include <sstream>
 
 
-GameView::GameView(int w, int h, char const* title, MatrixModel& m) 
-    : Fl_Window(w, h, title),
-      model(m) 
+GameView::GameView(int x, int y, int w, int h, char const* title, MatrixModel& m) 
+    : Fl_Window(x, y, w, h, title),
+      m_model(m) 
 {
 
     m_restartButton = std::make_unique<Fl_Button>(22, 160, 100, 50, "New game");
@@ -52,10 +52,10 @@ GameView::GameView(int w, int h, char const* title, MatrixModel& m)
 };
 
 
-void GameView::update_window() {
+void GameView::updateWindow() {
     for (int i = 0; i < c_gridSize; ++i){
         for (int j = 0; j < c_gridSize; ++j){
-            int num = model.getNum(i,j);
+            int num = m_model.getNum(i,j);
 
             if (num != 0){
                 std::string label = std::to_string(num);
@@ -65,10 +65,10 @@ void GameView::update_window() {
                 m_buttonGrid[i * c_gridSize + j]->label("  ");
         }
     }
-};
 
-void GameView::show_finish_window() {
-    
+    if (m_model.getWinState() && m_endGameCallback){
+        m_endGameCallback();
+    }
 };
 
 GameView::~GameView() {
