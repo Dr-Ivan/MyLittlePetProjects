@@ -13,11 +13,9 @@
 
 class GameView : public Fl_Window {
 public:
-    GameView(int w, int h, char const* title, MatrixModel& m);
+    GameView(int x, int y, int w, int h, char const* title, MatrixModel& m);
 
-    void update_window();
-
-    void show_finish_window();
+    void updateWindow();
 
     void setButtonGridCallback(std::function<void(std::pair<int, int>)> callback) {
         m_buttonPressed = std::move(callback);
@@ -25,6 +23,10 @@ public:
 
     void setRestartCallback(std::function<void(void)> callback) {
         m_restartCallback = std::move(callback);
+    };
+
+    void setEndGameCallback(std::function<void(void)> callback) {
+        m_endGameCallback = std::move(callback);
     };
 
     // // Запрет копирования
@@ -38,7 +40,7 @@ private:
     const int c_buttonWidth = 30;
     const int c_buttonHeight = 30;
     
-    MatrixModel& model;
+    MatrixModel& m_model;
 
     std::vector<std::unique_ptr<Fl_Button>> m_buttonGrid;
     std::vector<std::pair<int, int>> m_buttonGridIndexes;
@@ -47,6 +49,7 @@ private:
     std::unique_ptr<Fl_Button> m_restartButton;
     std::function<void(std::pair<int, int>)> m_buttonPressed;
     std::function<void()> m_restartCallback;
+    std::function<void()> m_endGameCallback;
 
 };
 
