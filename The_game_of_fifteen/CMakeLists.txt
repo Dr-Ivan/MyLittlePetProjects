@@ -9,6 +9,10 @@ include_directories(${FLTK_INCLUDE_DIRS})
 link_directories(${FLTK_LIBRARY_DIRS}) 
 add_definitions(${FLTK_DEFINITIONS})
 
+if(WIN32)
+    set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -mwindows")
+endif()
+
 # # Исходники
 # file(GLOB_RECURSE GAME_SOURCES
 #     "ControllerFiles/*.cpp"
