@@ -13,7 +13,11 @@ MatrixModel::MatrixModel()
 void MatrixModel::shuffleMatrix(){
     std::random_device rd;
     std::mt19937 g(rd());
-    std::shuffle(matrix.begin(), matrix.end(), g);
+
+    do{
+        std::shuffle(matrix.begin(), matrix.end(), g);
+    } while (!isSolvable());
+
 }
 
 const int MatrixModel::getNum(int x, int y) const{
@@ -47,12 +51,14 @@ void MatrixModel::moveNum(std::pair<int, int> coords){
     int temp = matrix[toMoveIndex];
     matrix[toMoveIndex] = matrix[switchWithIndex];
     matrix[switchWithIndex] = temp;
+    m_movesCount++;
 
     checkWin();
 };
 
 
 void MatrixModel::restart(){
+    m_movesCount = 0;
     win = false;
     shuffleMatrix();
 };
@@ -75,6 +81,21 @@ void MatrixModel::printMatrix() {
         std::cout << '\n';
     }
     std::cout << '\n';
+}
+
+bool MatrixModel::isSolvable() {
+    int inversions = 0;
+    int empty_row = 4;
+    
+    for (int i = 0; i < 15; ++i) {
+        for (int j = i + 1; j < 16; ++j) {
+            if (matrix[j] != 0 && matrix[i] > matrix[j]) {
+                inversions++;
+            }
+        }
+    }
+    
+    return (inversions % 2) == 1;
 }
 
 
