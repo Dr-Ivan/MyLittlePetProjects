@@ -4,7 +4,7 @@
 Controller::Controller()
     : m_model(MatrixModel())
     , m_gameView(std::make_unique<GameView>(650, 200, 145, 220, "15", m_model))
-    , m_endGameMessage(std::make_unique<EndGameMessage>(650, 200, 220, 80, "You won!"))
+    , m_endGameMessage(std::make_unique<EndGameMessage>(650, 200, 255, 80, "You won!"))
 {
     m_gameView->setButtonGridCallback(std::bind(&Controller::buttonGridCallback, this, std::placeholders::_1));
     m_gameView->setRestartCallback(std::bind(&Controller::newGameCallback, this));
