@@ -15,7 +15,7 @@ public:
     const int getNum(int x, int y) const;
     void moveNum(std::pair<int, int> coords);
     void restart();
-    bool getWinState() {return win;};
+    bool getWinState() {return m_win;};
     int getMovesCount() {return m_movesCount;};
 
     void printMatrix();
@@ -27,7 +27,7 @@ private:
 
     const int c_gridSize = 4;
     int m_movesCount = 0;
-    bool win = false;
-    std::vector<int> matrix;
+    bool m_win = false;
+    std::vector<int> m_matrix;
 
 };
