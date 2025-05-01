@@ -2,10 +2,10 @@
 
 MatrixModel::MatrixModel()
 {
-    matrix = std::vector<int> (c_gridSize*c_gridSize, 0);
+    m_matrix = std::vector<int> (c_gridSize*c_gridSize, 0);
 
     for (int i = 0; i < c_gridSize*c_gridSize; ++i)
-        matrix[i] = i;
+        m_matrix[i] = i;
 
     shuffleMatrix();
 }
@@ -15,22 +15,22 @@ void MatrixModel::shuffleMatrix(){
     std::mt19937 g(rd());
 
     do{
-        std::shuffle(matrix.begin(), matrix.end(), g);
+        std::shuffle(m_matrix.begin(), m_matrix.end(), g);
     } while (!isSolvable());
 
 }
 
 const int MatrixModel::getNum(int x, int y) const{
     int ind = x * c_gridSize + y;
-    if (ind < matrix.size())
-        return matrix[ind];
+    if (ind < m_matrix.size())
+        return m_matrix[ind];
     else
         return -1;
 }
 
 void MatrixModel::moveNum(std::pair<int, int> coords){
     int toMoveIndex = coords.first * c_gridSize + coords.second;
-    if (matrix[toMoveIndex] == 0) return;
+    if (m_matrix[toMoveIndex] == 0) return;
 
     int switchWithIndex = -1;
 
@@ -48,9 +48,9 @@ void MatrixModel::moveNum(std::pair<int, int> coords){
     
     if (switchWithIndex == -1) return;
 
-    int temp = matrix[toMoveIndex];
-    matrix[toMoveIndex] = matrix[switchWithIndex];
-    matrix[switchWithIndex] = temp;
+    int temp = m_matrix[toMoveIndex];
+    m_matrix[toMoveIndex] = m_matrix[switchWithIndex];
+    m_matrix[switchWithIndex] = temp;
     m_movesCount++;
 
     checkWin();
@@ -59,17 +59,17 @@ void MatrixModel::moveNum(std::pair<int, int> coords){
 
 void MatrixModel::restart(){
     m_movesCount = 0;
-    win = false;
+    m_win = false;
     shuffleMatrix();
 };
 
 void MatrixModel::checkWin(){
     for (int i = 0; i < c_gridSize*c_gridSize-1; ++i)
-        if (matrix[i] != i+1){
-            win = false;
+        if (m_matrix[i] != i+1){
+            m_win = false;
             return;
         };
-    win = true;
+    m_win = true;
 };
 
 void MatrixModel::printMatrix() {
@@ -85,21 +85,29 @@ void MatrixModel::printMatrix() {
 
 bool MatrixModel::isSolvable() {
     int inversions = 0;
-    int empty_row = 4;
+    int empty_row = 0;
     
     for (int i = 0; i < 15; ++i) {
+        if (m_matrix[i] == 0) {
+            empty_row = i / 4 + 1; 
+            continue;
+        }
         for (int j = i + 1; j < 16; ++j) {
-            if (matrix[j] != 0 && matrix[i] > matrix[j]) {
+            if (m_matrix[j] != 0 && m_matrix[i] > m_matrix[j]) {
                 inversions++;
             }
         }
     }
     
-    return (inversions % 2) == 1;
+    if ((empty_row % 2) == 1) { 
+        return (inversions % 2) == 0;
+    } else { 
+        return (inversions % 2) == 1;
+    }
 }
 
 
 MatrixModel::~MatrixModel()
 {
-    matrix.clear();
+    m_matrix.clear();
 }
