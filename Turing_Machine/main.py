@@ -2,7 +2,7 @@ def printLog(iteration, curSymbol, curState, replacement, direction, newState):
     print(f'T{iteration}: {curSymbol}, {curState} ----> {replacement}, {direction.capitalize()}, {newState}')
 
 
-def turingMacineSimulation(line, pointer):
+def turingMachineSimulation(line, pointer):
     state = 's0'
     i = 0
     direction = ''
@@ -84,7 +84,7 @@ if __name__ == "__main__":
         print("Неверный алфавит для троичной системы.")
         exit(0)
 
-    res = turingMacineSimulation(tape, start)
+    res = turingMachineSimulation(tape, start)
     print("Результат:")
     print("Исходная строка: ", tape)
     print("Выходная строка: ", res)
