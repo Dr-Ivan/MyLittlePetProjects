@@ -1,0 +1,31 @@
+.BasicButton {
+    width: 10%;
+    height: 10%;
+    font-weight: bold;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 25px;
+    border-radius: 150px;
+    background-color: white;
+    color: rgb(0, 119, 216);
+}
+
+.BasicButton:hover {
+    background-color: wheat;
+    color: black;
+}
+
+.CalculateButton{
+    width: 10%;
+    height: 20%;
+    font-weight: bold;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 25px;
+    border-radius: 150px;
+    background-color: orange;
+    color: white;
+}
+
+.CalculateButton:hover {
+    background-color: rgb(255, 210, 128);
+    color: black;
+}
