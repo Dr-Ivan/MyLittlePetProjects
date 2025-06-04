@@ -8,30 +8,35 @@
 
 <body>
 
-    <div class="calculator">
+    <div class="Calculator">
         <input id = "inputLine" type="text" readonly />
 
-        <div class="keyboard">
-            <button onclick="addToInput(0)" class="BasicButton">0</button>
-            <button onclick="addToInput(1)" class="BasicButton">1</button>
-            <button onclick="addToInput(2)" class="BasicButton">2</button>
-            <button onclick="addToInput(3)" class="BasicButton">3</button>
-            <button onclick="addToInput(4)" class="BasicButton">4</button>
-            <button onclick="addToInput(5)" class="BasicButton">5</button>
-            <button onclick="addToInput(6)" class="BasicButton">6</button>
+        <div class="Keyboard">
+
             <button onclick="addToInput(7)" class="BasicButton">7</button>
             <button onclick="addToInput(8)" class="BasicButton">8</button>
             <button onclick="addToInput(9)" class="BasicButton">9</button>
+            <button onclick="addToInput('/')" class="OperationButton">/</button>
 
-            <button onclick="addToInput('+')" class="BasicButton">+</button>
-            <button onclick="addToInput('-')" class="BasicButton">-</button>
-            <button onclick="addToInput('*')" class="BasicButton">*</button>
-            <button onclick="addToInput('/')" class="BasicButton">/</button>
+            <button onclick="addToInput(4)" class="BasicButton">4</button>
+            <button onclick="addToInput(5)" class="BasicButton">5</button>
+            <button onclick="addToInput(6)" class="BasicButton">6</button>
+            <button onclick="addToInput('-')" class="OperationButton">-</button>
 
-            <button onclick="calculate()" class="CalculateButton">=</button>
+            
+            <button onclick="addToInput(1)" class="BasicButton">1</button>
+            <button onclick="addToInput(2)" class="BasicButton">2</button>
+            <button onclick="addToInput(3)" class="BasicButton">3</button>
+            <button onclick="addToInput('+')" class="OperationButton">+</button>
 
+            <button onclick="addToInput('.')" class="BasicButton">.</button>
+            <button onclick="addToInput(0)" class="BasicButton">0</button>
             <button onclick="resetInput()" class="BasicButton">CLR</button>
+            <button onclick="addToInput('*')" class="OperationButton">*</button>
+    
         </div>
+
+        <button onclick="calculate()" class="CalculateButton">=</button>
 
     </div>
 
