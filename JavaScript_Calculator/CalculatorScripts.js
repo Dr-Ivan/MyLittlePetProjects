@@ -1,9 +1,4 @@
 const inputLine = document.getElementById("inputLine");
-const outputLine = document.getElementById("out");
-
-function msg () {
-    outputLine.value = inputLine.value;
-}
 
 function addToInput(txt){
     inputLine.value += txt;
